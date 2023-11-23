@@ -101,27 +101,23 @@ void fsinput(char board[][SIZE]){
         //by this loop we take initil position of guti
         while(i==1){
 
-           printf("enter the 'row'of guti which you want to move:" );
-           scanf("%d",&rowintial);
-           printf("enter the 'colume'of guti which you want to move:" );
-           scanf("%d",&colintial);
+           printf("Enter Row, Column Of The Man You Want To Move: ");
+           scanf("%d %d", &rowintial, &colintial);
            //now call the conferm function to cahck at given location guti is present or not 
             a =  conferm1(board,rowintial,colintial,'X');//call the function to 
            if ((rowintial<0||rowintial>7)||(colintial<0||colintial>7) )
            {
-           	printf("you inter invalid location\n ");
+           	printf("INVALID INPUT: OUT OF BOUNDS!\n");
            }else if(a==0){
-           	   printf("enter the valide location the  is no your guti\n ");
+           	   printf("INVALID LOCATION ENTERED: YOU DONT HAVE A PIECE HERE\n");
            }else i=-1;
         }
           i=1;
         //take input for final loction of guti 
          while(i>0){
 
-           printf("enter the 'row' of new location of pice:" );
-           scanf("%d",&row);
-           printf("enter the 'colume' of now location of pice:" );
-           scanf("%d",&col);
+           printf("Enter Row, Column Where You Want To Move: ");
+            scanf("%d %d", &row, &col);
            //now call the conferm function to cahck at given location guti is present or not 
             a =  conferm2(board,row,col);//call the function to know yha phaly sy hi goti to nhi gha
             int difrow=  rowintial-row  ;
@@ -142,17 +138,17 @@ void fsinput(char board[][SIZE]){
 
            if ((row<0||row>7)||(col<0||col>7) )
            {
-           	printf("you inter invalid location this location not in board\n ");
+           	printf("INVALID INPUT: OUT OF BOUNDS!\n");
            }else 
            if(a==0){
-           	   printf("error! invalid location there is another pice present\n ");
+           	   printf("INVALID LOCATION ENTERED: A PIECE IS ALREADY THERE\n");
            }else 
            if(difcol>2||difrow>2){
-           	  printf("you can't move at this location it is not allowed\n");
+           	  printf("You cannot move to this location\n");
            }else
             if(b==2&&c==2){
             	if(difrow>0){
-            		printf("you enter the invalid location");
+            		printf("INVALID LOCATION ENTERED!");
             	}else
            	  if(difrow<0){
            	  	switch(difcol){
@@ -197,17 +193,15 @@ void scinput(char board[][SIZE]){
         //by this loop we take initil position of guti
         while(i==1){
 
-           printf("enter the 'row'of guti which you want to move:" );
-           scanf("%d",&rowintial);
-           printf("enter the 'colume'of guti which you want to move:" );
-           scanf("%d",&colintial);
+           printf("Enter Row, Column Of The Man You Want To Move: ");
+           scanf("%d %d", &rowintial, &colintial);
            //now call the conferm function to cahck at given location guti is present or not 
             a =  conferm1(board,rowintial,colintial,'O');//call the function to 
            if ((rowintial<0||rowintial>7)||(colintial<0||colintial>7) )
            {
-           	printf("you inter invalid location\n ");
+           	printf("INVALID INPUT: OUT OF BOUNDS!\n");
            }else if(a==0){
-           	   printf("enter the valide location there  is no your pice\n ");
+           	   printf("INVALID LOCATION ENTERED: YOU DONT HAVE A PIECE HERE\n");
            }else i=-1;
         }
           i=1;
@@ -215,11 +209,8 @@ void scinput(char board[][SIZE]){
 
         //take input for final loction of guti 
           while (i == 1) {
-        printf("Enter the 'row' of the new location of the piece: ");
-        scanf("%d", &row);
-
-        printf("Enter the 'column' of the new location of the piece: ");
-        scanf("%d", &col);
+        printf("Enter Row, Column Where You Want To Move: ");
+        scanf("%d %d", &row, &col);
 
         // Call the confirm function to check if the new location is valid
         a = conferm2(board, row, col);
@@ -238,11 +229,11 @@ void scinput(char board[][SIZE]){
 
         
         if (row < 0 || row >= SIZE || col < 0 || col >= SIZE) {
-            printf("Invalid location. This location is not on the board.\n");
+            printf("INVALID INPUT: OUT OF BOUNDS!\n");
         } else if (a == 0) {
-            printf("Error! Invalid location. There is another piece present.\n");
+            printf("INVALID LOCATION ENTERED: A PIECE IS ALREADY THERE!\n");
         } else if (difrow > 2 || difcol > 2) {
-            printf("You can't move to this location. It is not allowed.\n");
+            printf("You cannot move to this location\n");
         } else if (b == 2 && c == 2) {
             if (difrow > 0) {
                 switch (difcol) {
@@ -315,7 +306,7 @@ void result(char board[][SIZE]){
 	  	}
 	  }//end of for
 	  if(flag){
-	  	printf("2nd person is win the game :\n");
+	  	printf("Player 2 Wins\n");
 	  		return;
 	  }else
 	  flag=true;
@@ -328,7 +319,7 @@ void result(char board[][SIZE]){
 	  	}
 	  }//end  of for loop 
 	  if (flag){
-	  	printf("frist person is  win the game :\n");
+	  	printf("Player 1 Wins\n");
 	  		return;
 	  }
 }
@@ -341,11 +332,11 @@ void playgame(char board[][SIZE],int i){
 	   	return;
 	   }
 	   if(i%2==0){
-	   	printf("tern of 1st person\n");
+	   	printf("Turn of Player 1\n");
 	   	fsinput(board);//call the function  1st person input
 	   }
 	   else{
-	   	  printf("tern of secend person\n");
+	   	  printf("Turn of Player 2\n");
 	   	 scinput(board);//call the function 2nd person input
 	   }
 	   system("cls");
@@ -360,6 +351,7 @@ void playgame(char board[][SIZE],int i){
 
 	system("cls");
 	display(board);
+    printf("Player 1 is: X\nPlayer 2 is: O\n");
 	int c,r;//c stand for calume and r stand for row
     
     playgame(board,3000);
