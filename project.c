@@ -4,7 +4,7 @@
 #include<stdbool.h>
 #define SIZE 8
 
-
+  //for initialize Board
 char board[SIZE][SIZE] = {{'X', ' ', 'X', ' ', 'X', ' ', 'X', ' '},
                           {' ', 'X', ' ', 'X', ' ', 'X', ' ', 'X'},
                           {'X', ' ', 'X', ' ', 'X', ' ', 'X', ' '},
@@ -13,6 +13,7 @@ char board[SIZE][SIZE] = {{'X', ' ', 'X', ' ', 'X', ' ', 'X', ' '},
                           {' ', 'O', ' ', 'O', ' ', 'O', ' ', 'O'},
                           {' ', ' ', 'O', ' ', 'O', ' ', 'O', ' '},
                           {' ', 'O', ' ', 'O', ' ', 'O', ' ', 'O'}};
+
 // in this function we confermed k goti ha ya nhi frist person ki
  int conferm1(char board[][SIZE],int r,int c,char ch){
  	//c stand for colume 
@@ -116,7 +117,7 @@ void fsinput(char board[][SIZE]){
             int c;//use as a mode function for colume
             if(difrow<0){
                 b = difrow*(-1);
-            }
+            }else
             if(difcol<0){
             	c = difcol*(-1);
             }
@@ -131,26 +132,10 @@ void fsinput(char board[][SIZE]){
            	  printf("you can't move at this location it is not allowed\n");
            }else
             if(b==2&&c==2){
-           	  if(difcol<0){
-           	  	switch(difrow){
+           	  if(difrow>0){
+           	  	switch(difcol){
            	  	case -2:
-           	  		if(chackforbak(board,row-1,col-1,rowintial,colintial)!=1){
-           	  			printf("your move is roung enter valid adderass\n");	
-           	  		}
-           	  		break;
-           	  	case 2: 
-           	  		if(chackforbak(board,row+1,col-1,rowintial,colintial)!=1){
-           	  		    printf("your move is roung enter valid adderass\n");
-           	  	    }
-           	  	    break;
-           	  	default:printf("there is any problubme in your input \n");
-           	  	}//end of switch of difro
-           	  }//end of if difcol<0
-           	  else
-           	  if(difcol>0){
-           	  	switch(difrow){
-           	  	case -2:
-           	  		if(chackforbak(board,row-1,col+1,rowintial,colintial)!=1){
+           	  		if(chackforbak(board,row1-1,col1,rowintial,colintial)!=1){
            	  			printf("your move is roung enter valid adderass\n");
            	  		}
            	  		break;
@@ -277,7 +262,8 @@ void scinput(char board[][SIZE]){
 	return;
 }//end of input of frist preson
 
-// this functon chack for bass condition to stope game
+
+// this functon chack for base condition to stope game
 int chack(char board[][SIZE]){
 	    // bool flag=true;
 	    // char searchChar='X';//search for frist member guti
@@ -299,6 +285,8 @@ int chack(char board[][SIZE]){
 	    // }
       return 1;
 }
+
+
 
 ///play game in the function
 void playgame(char board[][SIZE],int i){
@@ -324,6 +312,7 @@ void playgame(char board[][SIZE],int i){
 
  int main(int argc, char const *argv[])
 {
+	system("cls")
 	display(board);
 	//int c,r;//c stand for calume and r stand for row
     
