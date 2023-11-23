@@ -37,13 +37,22 @@ char board[SIZE][SIZE] = {{'X', ' ', 'X', ' ', 'X', ' ', 'X', ' '},
 //this function chack if user move 2 col or row it can chack back
  int chackforbak(char board[][SIZE],int row,int col,int curent_row,int curent_col){
  	     char a=board[curent_row][curent_col];
+ 	     char c;
  	     char b=' ';
+ 	     if(a=='X'){
+ 	     	c='O';
+ 	     }else
+ 	     c='X';
  	     if(board[row][col]==b){
  	     	return 0;
- 	     }
- 	     if(board[row][col]==a){
+ 	     }else
+ 	      if(board[row][col]==a){
  	     	return 0;
+ 	     }else
+ 	     if(board[row][col]==c){
+ 	     	board[row][col]=' ';
  	     }
+
 
  	return 1;
  }
@@ -132,15 +141,18 @@ void fsinput(char board[][SIZE]){
            	  printf("you can't move at this location it is not allowed\n");
            }else
             if(b==2&&c==2){
-           	  if(difrow>0){
+            	if(difrow>0){
+            		printf("you enter the invalid location");
+            	}else
+           	  if(difrow<0){
            	  	switch(difcol){
            	  	case -2:
-           	  		if(chackforbak(board,row1-1,col1,rowintial,colintial)!=1){
+           	  		if(chackforbak(board,row-1,col-1,rowintial,colintial)!=1){
            	  			printf("your move is roung enter valid adderass\n");
            	  		}
            	  		break;
            	  	case 2: 
-           	  		if(chackforbak(board,row+1,col+1,rowintial,colintial)!=1){
+           	  		if(chackforbak(board,row-1,col+1,rowintial,colintial)!=1){
            	  			printf("your move is roung enter valid adderass\n");
            	  		}
            	  		break;
@@ -153,10 +165,11 @@ void fsinput(char board[][SIZE]){
            		if (board[row][col]!=' '){
            		 printf("you can't move hear becouse there is already an pice\n");
            		}
-           	}else i=-1;
+           	}else {
+           		i=-1;
            }
-           movepice(board,rowintial,colintial,row,col,'X');
-
+           }
+            movepice(board,rowintial,colintial,row,col,'X');
 	return;
 }//end of input of frist preson
 
@@ -184,79 +197,50 @@ void scinput(char board[][SIZE]){
            }else i=-1;
         }
           i=1;
+
+
         //take input for final loction of guti 
-         while(i==1){
+          while (i == 1) {
+        printf("Enter the 'row' of the new location of the piece: ");
+        scanf("%d", &row);
 
-           printf("enter the 'row' of new location of pice:" );
-           scanf("%d",&row);
-           printf("enter the 'colume' of now location of pice:" );
-           scanf("%d",&col);
-           //now call the conferm function to cahck at given location guti is present or not 
-            a =  conferm2(board,row,col);//call the function to know yha phaly sy hi goti to nhi gha
-            int difrow=row-rowintial;
-            int  difcol=col-colintial;
-            int b;//use as  a mode function for row
-            int c;//use as a mode function for colume
-            if(difrow<0){
-                b = difrow*(-1);
-            }
-            if(difcol<0){
-            	c = difcol*(-1);
-            }
+        printf("Enter the 'column' of the new location of the piece: ");
+        scanf("%d", &col);
 
-            if(b<1||c<1){
-            	 printf("you can't move at this location it is not allowed\n");
-            }else
-            if ((row<0||row>7)&&(col<0||col>7) )
-            {
-           	printf("you inter invalid location this location not in board\n ");
-            }else 
-            if(a==0){
-           	   printf("error! invalid location there is another pice present\n ");
-            }else 
-            if(difcol>2||difrow>2){
-           	  printf("you can't move at this location it is not allowed\n");
-            }else
-             if(b==2&&c==2){
-           	   if(difcol<0){
-           	  	 switch(difrow){
-           	  	 case -2:
-           	  		if(chackforbak(board,row-1,col-1,rowintial,colintial)!=1){
-           	  			printf("your move is roung enter valid adderass\n");	
-           	  		}
-           	  		break;
-           	  	 case 2: 
-           	  		if(chackforbak(board,row+1,col-1,rowintial,colintial)!=1){
-           	  		    printf("your move is roung enter valid adderass\n");
-           	  	    }
-           	  	    break;
-           	  	 default:printf("there is any problubme in your input \n");
-           	  	 }//end of switch of difro
-           	   }//end of if difcol<0
-           	   else
-           	    if(difcol>0){
-           	  	  switch(difrow){
-           	  	  case -2:
-           	  		if(chackforbak(board,row-1,col+1,rowintial,colintial)!=1){
-           	  			printf("your move is roung enter valid adderass\n");
-           	  		}
-           	  		break;
-           	  	  case 2: 
-           	  		if(chackforbak(board,row+1,col+1,rowintial,colintial)!=1){
-           	  			printf("your move is roung enter valid adderass\n");
-           	  		}
-           	  		break;
-           	  	  default:printf("there is any problubme in your input \n");
-           	  	  }//end of switcah
-           	    }//end of if difcol > 0
-           	}//end of if b == 2 && a == 2
-           	else 
-           	if (b==1&&c==1){
-           		if (board[row][col]!=' '){
-           		 printf("you can't move hear becouse there is already an pice\n");
-           		}
-           	}else i=-1;
-           }
+        // Call the confirm function to check if the new location is valid
+        a = conferm2(board, row, col);
+
+        int difrow = (row - rowintial);
+        int difcol = (col - colintial);
+
+        
+        if (row < 0 || row >= SIZE || col < 0 || col >= SIZE) {
+            printf("Invalid location. This location is not on the board.\n");
+        } else if (a == 0) {
+            printf("Error! Invalid location. There is another piece present.\n");
+        } else if (difrow > 2 || difcol > 2) {
+            printf("You can't move to this location. It is not allowed.\n");
+        } else if (difrow == 2 && difcol == 2) {
+            if (difrow > 0) {
+                switch (difcol) {
+                    case 2:
+                        if (chackforbak(board, row + 1, col - 1, rowintial, colintial) != 1) {
+                            printf("Your move is wrong. Enter a valid address.\n");
+                        }
+                        break;
+                    default:
+                        printf("There is a problem in your input.\n");
+                }
+            }
+        } else if (difrow == 1 && difcol == 1) {
+            if (board[row][col] != ' ') {
+                printf("You can't move here because there is already a piece.\n");
+            }
+        } else {
+            i = -1;
+        }
+    }
+
            movepice(board,rowintial,colintial,row,col,'O');
 
 	return;
@@ -312,11 +296,12 @@ void playgame(char board[][SIZE],int i){
 
  int main(int argc, char const *argv[])
 {
-	system("cls")
+	system("cls");
 	display(board);
 	//int c,r;//c stand for calume and r stand for row
     
     playgame(board,3000);
      
 	return 0;
+
 }
