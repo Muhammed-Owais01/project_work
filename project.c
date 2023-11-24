@@ -83,6 +83,7 @@ void display(char board[][SIZE]){
       	
       	
       }
+       printf("Player 1 is: X\nPlayer 2 is: O\n");
       return;
 }//end of display
 
@@ -144,7 +145,11 @@ void fsinput(char board[][SIZE]){
            	   printf("INVALID LOCATION ENTERED: A PIECE IS ALREADY THERE\n");
            }else 
            if(difcol>2||difrow>2){
-           	  printf("You cannot move to this location\n");
+           	  printf("YOU CANNOT MOVE TO THIS LOCATON \n");
+           }else
+           if (b!=c)
+           {
+              printf("INVALID LOCATION ENTERED: YOU CAN ONLY MOVE DIAGONALLY\n");
            }else
             if(b==2&&c==2){
             	if(difrow>0){
@@ -154,12 +159,12 @@ void fsinput(char board[][SIZE]){
            	  	switch(difcol){
            	  	case -2:
            	  		if(chackforbak(board,row-1,col-1,rowintial,colintial)!=1){
-           	  			printf("your move is roung enter valid adderass\n");
+           	  			printf("INVALID LOCATION ENTERED\n");
            	  		}
            	  		
            	  	case 2: 
            	  		if(chackforbak(board,row-1,col+1,rowintial,colintial)!=1){
-           	  			printf("your move is roung enter valid adderass\n");
+           	  			printf("INVALID LOCATION ENTERED\n");
            	  		}
            	  		
            	  	default:i=-1;
@@ -169,7 +174,7 @@ void fsinput(char board[][SIZE]){
            	else 
            	if (b==1&&c==1){
            		if (board[row][col]!=' '){
-           		 printf("you can't move hear becouse there is already an pice\n");
+           		 printf("INVALID LOCATION ENTERED: A PIECE IS ALREADY THERE\n");
            		}else
            		i=-1;
            	}else{
@@ -234,7 +239,12 @@ void scinput(char board[][SIZE]){
             printf("INVALID LOCATION ENTERED: A PIECE IS ALREADY THERE!\n");
         } else if (difrow > 2 || difcol > 2) {
             printf("You cannot move to this location\n");
-        } else if (b == 2 && c == 2) {
+        } else
+        if (b!=c)
+           {
+              printf("INVALID LOCATION ENTERED: YOU CAN ONLY MOVE DIAGONALLY\n");
+        }else
+        if (b == 2 && c == 2) {
             if (difrow > 0) {
                 switch (difcol) {
                     case 2:
@@ -251,7 +261,7 @@ void scinput(char board[][SIZE]){
             }
         } else if (b== 1 && c == 1) {
             if (board[row][col] != ' ') {
-                printf("You can't move here because there is already a piece.\n");
+                printf("INVALID LOCATION ENTERED: A PIECE IS ALREADY THERE!\n");
             }else{
             	i=-1;
             }
@@ -351,7 +361,6 @@ void playgame(char board[][SIZE],int i){
 
 	system("cls");
 	display(board);
-    printf("Player 1 is: X\nPlayer 2 is: O\n");
 	int c,r;//c stand for calume and r stand for row
     
     playgame(board,3000);
