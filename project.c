@@ -125,7 +125,6 @@ void fsinput(char board[][SIZE]){
             int  difcol=  colintial-col ;
             int b;//use as  a mode function for row
             int c;//use as a mode function for colume
-           printf("difrow->%d,difcol->%d\n",difrow,difcol );
             if(difrow<0){
                 b = difrow*(-1);
              }else{
