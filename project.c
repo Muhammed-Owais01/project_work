@@ -6,7 +6,7 @@
 
 
   //for initialize Board
-char board[SIZE][SIZE] = {{'X', ' ', 'X', ' ', 'X', ' ', 'X', ' '},
+char board[SIZE][SIZE] =  {{'X', ' ', 'X', ' ','X', ' ', 'X', ' '},
                           {' ', 'X', ' ', 'X', ' ', 'X', ' ', 'X'},
                           {'X', ' ', 'X', ' ', 'X', ' ', 'X', ' '},
                           {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
@@ -14,7 +14,6 @@ char board[SIZE][SIZE] = {{'X', ' ', 'X', ' ', 'X', ' ', 'X', ' '},
                           {' ', 'O', ' ', 'O', ' ', 'O', ' ', 'O'},
                           {'O', ' ', 'O', ' ', 'O', ' ', 'O', ' '},
                           {' ', 'O', ' ', 'O', ' ', 'O', ' ', 'O'}};
-
 // in this function we confermed k goti ha ya nhi frist person ki
  int conferm1(char board[][SIZE],int r,int c,char ch){
  	//c stand for colume 
@@ -144,7 +143,7 @@ void fsinput(char board[][SIZE]){
            	   printf("INVALID LOCATION ENTERED: A PIECE IS ALREADY THERE\n");
            }else 
            if(difcol>2||difrow>2){
-           	  printf("YOU CANNOT MOVE TO THIS LOCATON \n");
+           	  printf("You cannot move to this location\n");
            }else
            if (b!=c)
            {
@@ -158,12 +157,12 @@ void fsinput(char board[][SIZE]){
            	  	switch(difcol){
            	  	case -2:
            	  		if(chackforbak(board,row-1,col-1,rowintial,colintial)!=1){
-           	  			printf("INVALID LOCATION ENTERED\n");
+           	  			printf("your move is roung enter valid adderass\n");
            	  		}
            	  		
            	  	case 2: 
            	  		if(chackforbak(board,row-1,col+1,rowintial,colintial)!=1){
-           	  			printf("INVALID LOCATION ENTERED\n");
+           	  			printf("your move is roung enter valid adderass\n");
            	  		}
            	  		
            	  	default:i=-1;
@@ -173,7 +172,7 @@ void fsinput(char board[][SIZE]){
            	else 
            	if (b==1&&c==1){
            		if (board[row][col]!=' '){
-           		 printf("INVALID LOCATION ENTERED: A PIECE IS ALREADY THERE\n");
+           		 printf("you can't move hear becouse there is already an pice\n");
            		}else
            		i=-1;
            	}else{
@@ -247,11 +246,11 @@ void scinput(char board[][SIZE]){
             if (difrow > 0) {
                 switch (difcol) {
                     case 2:
-                        if (chackforbak(board, row + 1, col - 1, rowintial, colintial) != 1) {
+                        if (chackforbak(board, row + 1,col +1, rowintial, colintial) != 1) {
                             printf("Your move is wrong. Enter a valid address.\n");
                         }
                        case -2:
-                       	if(chackforbak(board,row+1,col+1,rowintial,colintial) != 1){
+                       	if(chackforbak(board,row+1,col-1,rowintial,colintial) != 1){
                        		printf("your move is wrong>enter valid adderass:\n");
                        	}
                     default:
@@ -260,7 +259,7 @@ void scinput(char board[][SIZE]){
             }
         } else if (b== 1 && c == 1) {
             if (board[row][col] != ' ') {
-                printf("INVALID LOCATION ENTERED: A PIECE IS ALREADY THERE!\n");
+                printf("You can't move here because there is already a piece.\n");
             }else{
             	i=-1;
             }
@@ -286,7 +285,7 @@ int chack(char board[][SIZE]){
 	        }
 	    }
 	    
-	    if (flag){
+	    if (flag==true){
 	    	return 0;
 	    }
 
@@ -299,7 +298,7 @@ int chack(char board[][SIZE]){
 	    }
          }
 	    
-	    if (flag){
+	    if (flag==true){
 	    	return 0;
 	    }else
       return 1;
@@ -316,7 +315,7 @@ void result(char board[][SIZE]){
 	  }//end of for
 	  if(flag){
 	  	printf("Player 2 Wins\n");
-	  		return;
+	  		return ;
 	  }else
 	  flag=true;
 
@@ -329,8 +328,9 @@ void result(char board[][SIZE]){
 	  }//end  of for loop 
 	  if (flag){
 	  	printf("Player 1 Wins\n");
-	  		return;
+	  		return ;
 	  }
+	  return ;
 }
 
 ///play game in the function
@@ -338,7 +338,7 @@ void playgame(char board[][SIZE],int i){
 	    int a=chack(board);
 	   if(a==0){
 	   	  result(board);
-	   	return;
+	   	   return;
 	   }
 	   if(i%2==0){
 	   	printf("Turn of Player 1\n");
